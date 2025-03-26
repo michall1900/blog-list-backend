@@ -1,0 +1,55 @@
+@URL = http://localhost:3003/api/blogs
+
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "author": "Hello",
+  "url": "http://www.com",
+  "likes": 22
+}
+
+###
+
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "author": "Hello",
+  "url": "http://aaa.com",
+  "likes": 22
+}
+
+###
+
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "url": "http://www.com",
+  "likes": 22
+}
+
+###
+
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "author": "Hello",
+  "likes": 22
+}
+
+###
+
+POST {{URL}}
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "author": "Hello",
+  "url": "http://www.com"
+}
