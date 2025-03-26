@@ -2,6 +2,10 @@ const { test, describe } = require('node:test')
 const assert = require('node:assert')
 const listHelper = require ('../utils/listHelper')
 
+test('dummy returns one', () => {
+  assert.strictEqual(listHelper.dummy([]), 1)
+})
+
 describe('total likes', () => {
   const blogs = [
     {
@@ -66,3 +70,4 @@ describe('total likes', () => {
     assert.strictEqual(listHelper.totalLikes(blogs), 36)
   })
 })
+
