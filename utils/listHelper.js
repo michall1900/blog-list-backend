@@ -15,26 +15,34 @@ const favoriteBlog = (blogsList) => {
     blogsList.reduce ((maxBlog, blog) => (maxBlog.likes >= blog.likes)? maxBlog: blog, blogsList[0])
 }
 
-const createAuthorBlogCount = (blogsList) => {
+const createAuthorCountByValue = (blogsList, valueGetter, fieldName) => {
   const countBlogs = blogsList.reduce((accumulator, blog) => {
-    accumulator[blog.author] = (accumulator[blog.author] || 0) + 1
+    const value = valueGetter(blog)
+    accumulator[blog.author] = (accumulator[blog.author] || 0) + value
     return accumulator
   }, {})
-  return Object.entries(countBlogs).map(([author, blogs]) => ({
+  return Object.entries(countBlogs).map(([author, total]) => ({
     author,
-    blogs
+    [fieldName]: total
   }))
 }
 
 const mostBlogs = (blogsList) => {
-  const authorBlogCount = createAuthorBlogCount(blogsList)
+  const authorBlogCount = createAuthorCountByValue(blogsList, () => 1, 'blogs')
   return isEmptyList(blogsList) ? null :
     authorBlogCount.reduce((mostBlog, authorData) => (mostBlog.blogs >= authorData.blogs) ? mostBlog: authorData, authorBlogCount[0])
+}
+
+const mostLikes = (blogsList) => {
+  const authorLikesCount = createAuthorCountByValue(blogsList, blog => blog.likes, 'likes')
+  return isEmptyList(blogsList) ? null :
+    authorLikesCount.reduce((mostBlog, authorData) => (mostBlog.likes >= authorData.likes) ? mostBlog: authorData, authorLikesCount[0])
 }
 
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 }

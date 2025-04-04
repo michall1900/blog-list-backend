@@ -88,8 +88,8 @@ describe('favorit blog', () => {
   })
 })
 
-describe('most popular arthor', () => {
-  test('of empty list is -1', () => {
+describe('most blogs author', () => {
+  test('of empty list is null', () => {
     assert.deepStrictEqual(listHelper.mostBlogs([]), null)
   })
 
@@ -99,5 +99,19 @@ describe('most popular arthor', () => {
 
   test('of a bigger list is calculated right', () => {
     assert.deepStrictEqual(listHelper.mostBlogs(blogs), { author: 'Robert C. Martin', blogs: 3 })
+  })
+})
+
+describe('most popular author', () => {
+  test('of empty list is null', () => {
+    assert.deepStrictEqual(listHelper.mostLikes([]), null)
+  })
+
+  test('when list has only one blog, equals to the only author with its likes on the only blog', () => {
+    assert.deepStrictEqual(listHelper.mostLikes([blogs[0]]), { author: 'Michael Chan', likes: 7 })
+  })
+
+  test('of a bigger list is calculated right', () => {
+    assert.deepStrictEqual(listHelper.mostLikes(blogs), { author: 'Robert C. Martin', likes: 22 })
   })
 })
