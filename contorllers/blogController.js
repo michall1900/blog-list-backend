@@ -5,7 +5,7 @@ const getAllBlogs = async (req, res) => {
 
 const postNewBlog = async (req, res) => {
   const newBlog = new req.Blog(req.body)
-  const savedBlog = await newBlog.save() 
+  const savedBlog = await newBlog.save()
   res.json(savedBlog)
 }
 

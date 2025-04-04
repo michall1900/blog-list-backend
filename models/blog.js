@@ -21,7 +21,7 @@ const setToJsonScheme = (blogScheme) => {
   })
 }
 
-const initializeModel = () =>{
+const initializeModel = () => {
   const blogScheme = createSchema()
   setToJsonScheme(blogScheme)
   return mongoose.model ('Blog', blogScheme)

@@ -8,8 +8,7 @@ mongoose.set('strictQuery', false)
 const init = async () => {
   try{
     await mongoose.connect(config.MONGO_URI)
-    logger.info('Connected to MongoDB.') 
-  
+    logger.info('Connected to MongoDB.')
     app.listen(config.PORT, () => {
       logger.info(`Server running on port ${config.PORT}`)
     })
@@ -30,9 +29,8 @@ closingSignals.forEach((signal) => {
     logger.info(`Received ${signal}`)
     if(mongoose.connection.readyState){
       await mongoose.connection.close()
-      logger.info(`Disconnect from mongoose`)
+      logger.info('Disconnect from mongoose')
     }
-      
     process.exit(0)
   })
 })
