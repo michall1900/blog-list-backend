@@ -12,6 +12,14 @@ const blogs = [
     __v: 0
   },
   {
+    _id: '5a422b891b54a676234d17fa',
+    title: 'First class tests',
+    author: 'Robert C. Martin',
+    url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
+    likes: 10,
+    __v: 0
+  },
+  {
     _id: '5a422aa71b54a676234d17f8',
     title: 'Go To Statement Considered Harmful',
     author: 'Edsger W. Dijkstra',
@@ -25,14 +33,6 @@ const blogs = [
     author: 'Edsger W. Dijkstra',
     url: 'http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html',
     likes: 12,
-    __v: 0
-  },
-  {
-    _id: '5a422b891b54a676234d17fa',
-    title: 'First class tests',
-    author: 'Robert C. Martin',
-    url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll',
-    likes: 10,
     __v: 0
   },
   {
@@ -53,8 +53,10 @@ const blogs = [
   }
 ]
 
-test('dummy returns one', () => {
-  assert.strictEqual(listHelper.dummy([]), 1)
+describe('dummy', () => {
+  test('dummy returns one', () => {
+    assert.strictEqual(listHelper.dummy([]), 1)
+  })
 })
 
 describe('total likes', () => {
@@ -74,15 +76,28 @@ describe('total likes', () => {
 
 describe('favorit blog', () => {
   test('of empty list is -1', () => {
-    assert.strictEqual(listHelper.favoriteBlog([]), null)
+    assert.deepStrictEqual(listHelper.favoriteBlog([]), null)
   })
 
   test('when list has only one blog, equals the likes of that', () => {
-    assert.strictEqual(listHelper.favoriteBlog([blogs[0]]), blogs[0])
+    assert.deepStrictEqual(listHelper.favoriteBlog([blogs[0]]), blogs[0])
   })
 
   test('of a bigger list is calculated right', () => {
-    assert.strictEqual(listHelper.favoriteBlog(blogs), blogs[2])
+    assert.deepStrictEqual(listHelper.favoriteBlog(blogs), blogs[3])
   })
 })
 
+describe('most popular arthor', () => {
+  test('of empty list is -1', () => {
+    assert.deepStrictEqual(listHelper.mostBlogs([]), null)
+  })
+
+  test('when list has only one blog, equals to the only author with 1 as number of blogs', () => {
+    assert.deepStrictEqual(listHelper.mostBlogs([blogs[0]]), { author: 'Michael Chan', blogs: 1 })
+  })
+
+  test('of a bigger list is calculated right', () => {
+    assert.deepStrictEqual(listHelper.mostBlogs(blogs), { author: 'Robert C. Martin', blogs: 3 })
+  })
+})
